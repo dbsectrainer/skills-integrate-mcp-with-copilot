@@ -13,15 +13,94 @@ body {
   margin: 0 auto;
   padding: 20px;
   background-color: #f5f5f5;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    /* Main branch line */
+    linear-gradient(45deg, transparent 48%, rgba(50, 205, 50, 0.2) 49%, rgba(50, 205, 50, 0.2) 51%, transparent 52%),
+    /* Secondary branch */
+    linear-gradient(-30deg, transparent 49%, rgba(34, 139, 34, 0.15) 50%, transparent 51%),
+    /* Tertiary branch */
+    linear-gradient(60deg, transparent 49.5%, rgba(50, 205, 50, 0.1) 50%, transparent 50.5%),
+    /* Merge points */
+    radial-gradient(circle at 20% 30%, rgba(50, 205, 50, 0.3) 2px, transparent 3px),
+    radial-gradient(circle at 80% 70%, rgba(50, 205, 50, 0.3) 2px, transparent 3px),
+    radial-gradient(circle at 60% 20%, rgba(50, 205, 50, 0.3) 2px, transparent 3px);
+  background-size: 300px 300px, 400px 400px, 250px 250px, 500px 500px, 600px 600px, 450px 450px;
+  animation: gitBranches 25s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes gitBranches {
+  0% {
+    transform: translateX(-100px) translateY(-100px);
+  }
+  100% {
+    transform: translateX(100px) translateY(100px);
+  }
 }
 
 header {
   text-align: center;
   padding: 20px 0;
   margin-bottom: 30px;
-  background-color: #1a237e;
+  background-color: #32cd32;
   color: white;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.header-content {
+  flex: 1;
+}
+
+.mascot-left, .mascot-right {
+  flex: 0 0 auto;
+  padding: 0 20px;
+}
+
+.mascot {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 3px solid white;
+  background-color: white;
+}
+
+.mascot-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid white;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  animation: mascotBounce 2s ease-in-out infinite;
+}
+
+@keyframes mascotBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 header h1 {
@@ -54,7 +133,7 @@ section h3 {
   margin-bottom: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
-  color: #1a237e;
+  color: #228b22;
 }
 
 .activity-card {
@@ -67,7 +146,7 @@ section h3 {
 
 .activity-card h4 {
   margin-bottom: 10px;
-  color: #0066cc;
+  color: #228b22;
 }
 
 .activity-card p {
@@ -83,7 +162,7 @@ section h3 {
 
 .participants-section h5 {
   margin-bottom: 8px;
-  color: #1a237e;
+  color: #228b22;
   font-size: 16px;
 }
 
@@ -150,7 +229,7 @@ section h3 {
 }
 
 button {
-  background-color: #1a237e;
+  background-color: #32cd32;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -161,7 +240,7 @@ button {
 }
 
 button:hover {
-  background-color: #3949ab;
+  background-color: #228b22;
 }
 
 .message {
@@ -199,6 +278,43 @@ footer {
   color: #666;
 }
 
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-mascot {
+  font-size: 30px;
+  animation: mascotBounce 3s ease-in-out infinite;
+}
+
+.floating-mascot {
+  position: fixed;
+  top: 70%;
+  right: 20px;
+  font-size: 50px;
+  animation: float 6s ease-in-out infinite;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-30px) rotate(3deg);
+  }
+}
+
 /* Styles for the activities filter/search/sort toolbar */
 .toolbar {
   display: flex;
@@ -226,5 +342,23 @@ footer {
     flex-direction: column;
     align-items: stretch;
     gap: 6px;
+  }
+  
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .mascot-left, .mascot-right {
+    padding: 0;
+  }
+  
+  .mascot, .mascot-placeholder {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .mascot-placeholder {
+    font-size: 30px;
   }
 }
