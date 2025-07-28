@@ -9,17 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let allActivities = {};
 
-  // Helper: categorize activities
-  function getCategory(name, details) {
-    // Simple mapping for demo; in real app, this would be in the data
-    const sports = ["Soccer Team", "Basketball Team", "Gym Class"];
-    const stem = ["Programming Class", "Math Club"];
-    const arts = ["Art Club", "Drama Club"];
-    if (sports.includes(name)) return "Sports";
-    if (stem.includes(name)) return "STEM";
-    if (arts.includes(name)) return "Arts";
-    return "Clubs";
-  }
+  // The server now provides category information for each activity.
 
   // Function to render activities with filters
   function renderActivities() {
