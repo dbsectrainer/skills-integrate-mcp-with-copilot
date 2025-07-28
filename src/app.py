@@ -74,6 +74,12 @@ activities = {
         "schedule": "Fridays, 4:00 PM - 5:30 PM",
         "max_participants": 12,
         "participants": ["charlotte@mergington.edu", "henry@mergington.edu"]
+    },
+    "Life Skills Workshop": {
+        "description": "Develop essential life skills including communication, decision-making, creative thinking, and emotional intelligence through interactive workshops and group activities",
+        "schedule": "Mondays, 3:30 PM - 4:30 PM",
+        "max_participants": 25,
+        "participants": []
     }
 }
 

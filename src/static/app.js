@@ -9,6 +9,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let allActivities = {};
 
+  // Function to categorize activities based on name and content
+  function getCategory(name, details) {
+    const nameLower = name.toLowerCase();
+    const descLower = details.description.toLowerCase();
+    
+    // Life Skills activities (check first to prevent conflicts)
+    if (descLower.includes('communication') || descLower.includes('decision-making') ||
+        descLower.includes('creative thinking') || descLower.includes('emotional intelligence') ||
+        descLower.includes('life skills')) {
+      return 'Life Skills';
+    }
+    
+    // Sports activities (exclude debate team by checking for specific sports keywords)
+    if ((nameLower.includes('team') && !nameLower.includes('debate')) || 
+        nameLower.includes('gym') || descLower.includes('sport') || 
+        descLower.includes('physical') || nameLower.includes('soccer') || 
+        nameLower.includes('basketball')) {
+      return 'Sports';
+    }
+    
+    // STEM activities  
+    if (nameLower.includes('programming') || nameLower.includes('math') ||
+        descLower.includes('programming') || descLower.includes('math') ||
+        descLower.includes('software') || 
+        (descLower.includes('competition') && nameLower.includes('math'))) {
+      return 'STEM';
+    }
+    
+    // Arts activities
+    if (nameLower.includes('art') || nameLower.includes('drama') ||
+        descLower.includes('creativity') || descLower.includes('painting') ||
+        descLower.includes('drawing') || descLower.includes('performances')) {
+      return 'Arts';
+    }
+    
+    // Default to Clubs for everything else (including debate team)
+    return 'Clubs';
+  }
+
   // The server now provides category information for each activity.
 
   // Function to render activities with filters
